@@ -9,10 +9,10 @@ Built for **HIT391** by:
 
 | Name | Student ID |
 |---|---|
-| Sadit Khan | S379452 |
-| Nguyen Hao Vo | S377196 |
-| Fabiha Sultana Anushe | S372205 |
-| Roshan Karki | S365632 |
+| Sadit Khan |
+| Nguyen Hao Vo |
+| Fabiha Sultana Anushe |
+| Roshan Karki |
 
 ---
 
