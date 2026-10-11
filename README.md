@@ -1,6 +1,6 @@
 # 🥭 MangoMedic - Farm Surveillance Tech
 
-A Django web application for recording and managing mango pest and disease
+A Django web application for recording and managing pest and disease
 surveillance. Growers register farms, log surveillance sessions, record
 observations against a pest/disease reference library, calculate sampling
 effort, and export their data.
