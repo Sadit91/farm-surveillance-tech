@@ -1,0 +1,10 @@
+{% extends 'pests/base.html' %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Delete Pest or Disease</h2>
+  <div class="quick-buttons" style="margin-top: 1.5rem;">
+    <a href="{% url 'pest_delete_list' %}" class="quick-btn-special">Delete Pest</a>
+    <a href="{% url 'disease_delete_list' %}" class="quick-btn-special">Delete Disease</a>
+  </div>
+</div>
+{% endblock %}

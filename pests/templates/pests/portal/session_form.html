@@ -1,0 +1,14 @@
+{% extends "pests/base.html" %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Add Surveillance Session</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-fields">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="submit-button">Save Session</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "pests/base.html" %}
+
+{% block title %}{{ itm.name }} - Details{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+  <h1>{{ itm.name }}</h1>
+  <img src="{{ itm.image_url }}" alt="{{ itm.name }}" class="detail-image">
+
+  <div class="detail-content">
+    <p><strong>Description:</strong> {{ itm.brief_description }}</p>
+    <p><strong>Details:</strong> {{ itm.details }}</p>
+    <p><strong>Impact:</strong> {{ itm.impact }}</p>
+    {% if itm.severity %}
+      <p><strong>Severity:</strong> {{ itm.severity }}</p>
+    {% endif %}
+    {% if itm.infestation_rate %}
+      <p><strong>Infestation Rate:</strong> {{ itm.infestation_rate }}</p>
+    {% endif %}
+    <p><strong>Prevention & Control:</strong> {{ itm.control }}</p>
+  </div>
+
+  <a class="details-btn" href="{% url 'home' %}">Back to Home</a>
+  <a class="details-btn" href="{% url 'project_list' %}">View Projects</a>
+</div>
+{% endblock %}

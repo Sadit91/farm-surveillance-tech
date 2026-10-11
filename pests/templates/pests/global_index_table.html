@@ -1,0 +1,58 @@
+{% extends 'pests/base.html' %}
+
+{% block content %}
+<div class="global-index-wrapper">
+    <h2 style="color: #ffc107; text-align:center; margin-bottom:0.5em;">
+        🌍 Global Surveillance Index
+    </h2>
+    <p style="text-align:center; margin-bottom:2em;">
+        This table shows all recorded surveillance data across all farms and growers.
+    </p>
+    <div class="table-responsive">
+        <table class="global-index-table">
+            <thead>
+                <tr>
+                    <th>Grower</th>
+                    <th>Location</th>
+                    <th>Plants</th>
+                    <th>Stocking Rate</th>
+                    <th>Session Date</th>
+                    <th>Time of Day</th>
+                    <th>Plant Part</th>
+                    <th>Pest</th>
+                    <th>Disease</th>
+                    <th>Severity</th>
+                    <th>Recorded At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obs in observations %}
+                <tr>
+                    <td>{{ obs.session.farm.grower.name }}</td>
+                    <td>{{ obs.session.farm.location }}</td>
+                    <td>{{ obs.session.farm.num_plants }}</td>
+                    <td>{{ obs.session.farm.stocking_rate|floatformat:2 }}</td>
+                    <td>{{ obs.session.date }}</td>
+                    <td>{{ obs.session.time_of_day|capfirst }}</td>
+                    <td>{% if obs.session.plant_part %}{{ obs.session.plant_part.name }}{% else %}—{% endif %}</td>
+                    <td>{% if obs.pest %}{{ obs.pest.name }}{% else %}—{% endif %}</td>
+                    <td>{% if obs.disease %}{{ obs.disease.name }}{% else %}—{% endif %}</td>
+                    <td>
+                      {% if obs.result == 'low' %}
+                        <span class="badge badge-low">Low</span>
+                      {% elif obs.result == 'mid' %}
+                        <span class="badge badge-mid">Mid</span>
+                      {% elif obs.result == 'high' %}
+                        <span class="badge badge-high">High</span>
+                      {% else %}
+                        {{ obs.result }}
+                      {% endif %}
+                    </td>
+                    <td>{{ obs.timestamp|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

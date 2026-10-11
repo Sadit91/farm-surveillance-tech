@@ -1,0 +1,28 @@
+{% extends "pests/base.html" %}
+
+{% block title %}About - Mango Pests & Diseases{% endblock %}
+
+{% block content %}
+  <div class="about-container">
+    <h2>About Our Team</h2>
+    <p>
+      We are a dedicated group of students providing information to help mango growers to protect from pests and diseases.
+    </p>
+    <table class="team-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Student ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for member in tm %}
+            <tr>
+              <td>{{ member.n }}</td>
+              <td>{{ member.student_id }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+  </div>
+{% endblock %}

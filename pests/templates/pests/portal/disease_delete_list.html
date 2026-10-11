@@ -1,0 +1,16 @@
+{% extends 'pests/base.html' %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Delete Disease</h2>
+  <ul>
+    {% for disease in diseases %}
+      <li style="margin-bottom: 1rem;">
+        {{ disease.name }}
+        <a href="{% url 'disease_delete' disease.pk %}" class="btn-submit" style="display:inline-block;width:auto;margin-left:1rem;">Delete</a>
+      </li>
+    {% empty %}
+      <li>No diseases available.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "pests/base.html" %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Observations</h2>
+  <p><a class="submit-button" href="{% url 'observation_add' %}">➕ Add New Observation</a></p>
+
+  <ul>
+    {% for observation in observations %}
+      <li style="margin-bottom: 1rem;">
+        <strong>Session:</strong> {{ observation.session.date }} ({{ observation.session.time_of_day }})<br>
+        <strong>Plant Part:</strong> {{ observation.session.plant_part.name }}<br>
+        {% if observation.pest %}<strong>Pest:</strong> {{ observation.pest.name }}<br>{% endif %}
+        {% if observation.disease %}<strong>Disease:</strong> {{ observation.disease.name }}<br>{% endif %}
+        <strong>Result:</strong> {{ observation.result }}<br>
+        <a href="{% url 'observation_edit' observation.pk %}">✏️ Edit</a> |
+        <a href="{% url 'observation_delete' observation.pk %}">🗑️ Delete</a>
+      </li>
+    {% empty %}
+      <li>No observations yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

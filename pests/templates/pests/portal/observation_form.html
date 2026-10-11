@@ -1,0 +1,39 @@
+{% extends 'pests/base.html' %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Add Observation</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="{{ form.session.id_for_label }}">Surveillance Session:</label>
+      {{ form.session }}
+      {% if form.session.errors %}
+        <div class="form-error">{{ form.session.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.pest.id_for_label }}">Pest:</label>
+      {{ form.pest }}
+      {% if form.pest.errors %}
+        <div class="form-error">{{ form.pest.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.disease.id_for_label }}">Disease:</label>
+      {{ form.disease }}
+      {% if form.disease.errors %}
+        <div class="form-error">{{ form.disease.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.result.id_for_label }}">Result:</label>
+      {{ form.result }}
+      {% if form.result.errors %}
+        <div class="form-error">{{ form.result.errors }}</div>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn-submit">Save Observation</button>
+  </form>
+</div>
+{% endblock %}

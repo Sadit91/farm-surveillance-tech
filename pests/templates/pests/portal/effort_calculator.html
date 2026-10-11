@@ -1,0 +1,64 @@
+{% extends "pests/base.html" %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Surveillance Effort Calculator</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="{{ form.farm.id_for_label }}">Farm</label>
+      {{ form.farm }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.plant_count.id_for_label }}">Number of Plants</label>
+      {{ form.plant_count }}
+      <small class="form-help">Edit this value to try “what if” scenarios.</small>
+    </div>
+    <div class="form-group">
+      <label for="{{ form.season.id_for_label }}">Season</label>
+      {{ form.season }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.plant_part.id_for_label }}">Plant Part</label>
+      {{ form.plant_part }}
+    </div>
+    <button type="submit" class="btn-submit">Calculate</button>
+  </form>
+
+  {% if result %}
+  <div class="form-fields" style="margin-top: 1.5rem;">
+    <h3>Recommended Sample Count:</h3>
+    <p><strong>{{ result }}</strong></p>
+    <ul>
+      <li><strong>Farm Location:</strong> {{ location }}</li>
+      <li><strong>Stocking Rate:</strong> {{ stocking_rate }}</li>
+      <li><strong>Plant Count:</strong> {{ plant_count }}</li>
+      <li><strong>Season:</strong> {{ season|capfirst }}</li>
+      <li><strong>Plant Part:</strong>
+        {% if plant_part and plant_part.name %}{{ plant_part.name }}{% else %}{{ plant_part }}{% endif %}
+      </li>
+    </ul>
+    <p>This is the recommended number of plants to sample based on your input.</p>
+  </div>
+  {% endif %}
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var farmField = document.getElementById('id_farm');
+  var plantCountField = document.getElementById('id_plant_count');
+
+  if (farmField) {
+    farmField.addEventListener('change', function() {
+      var farmId = farmField.value;
+      if (!farmId) return;
+      fetch("{% url 'get_farm_plants' %}?farm_id=" + farmId)
+        .then(response => response.json())
+        .then(data => {
+          if (data.num_plants !== null && plantCountField) {
+            plantCountField.value = data.num_plants;
+          }
+        });
+    });
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "pests/base.html" %}
+
+{% block title %}Home - MangoMedic{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="intro">
+        <h2>Welcome to the MangoMedic Pests & Diseases Information Hub</h2>
+        <p>
+            Discover information on pests and diseases affecting mango crops.
+            Use the search box below to find detailed insights and management tips.
+        </p>
+    </div>
+
+    <div class="search-box">
+        <form method="get" action="{% url 'home' %}">
+            <input type="text" name="q" placeholder="Search pests or diseases" value="{{ query|default:'' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if query %}
+        <div class="search-results">
+            <h3>Results for "{{ query }}"</h3>
+            {% if items %}
+                <ul>
+                    {% for item in items %}
+                    <li>
+                        <h4>{{ item.name }}</h4>
+                        <p>{{ item.brief_description }}</p>
+                        <a class="details-btn" href="{% url 'proj_detail' itype=item.get_type pid=item.id %}">
+                            More details
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "pests/base.html" %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Your Farms</h2>
+  <p><a class="submit-button" href="{% url 'farm_add' %}">➕ Add New Farm</a></p>
+
+  <ul>
+    {% for farm in farms %}
+      <li style="margin-bottom: 1rem;">
+        <strong>{{ farm.location }}</strong> ({{ farm.num_plants }} plants, Stocking rate: {{ farm.stocking_rate }})<br>
+        <a href="{% url 'farm_edit' farm.pk %}">✏️ Edit</a> |
+        <a href="{% url 'farm_delete' farm.pk %}">🗑️ Delete</a>
+      </li>
+    {% empty %}
+      <li>No farms found.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

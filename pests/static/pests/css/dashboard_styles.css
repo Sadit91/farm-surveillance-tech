@@ -1,0 +1,47 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 2rem;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  color: #111;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 220px;
+  width: 100%;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  display: none;
+}
+
+.dashboard-card h3 {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.dashboard-card p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+}
+
+#plantTypeChart {
+  width: 300px !important;
+  height: 300px !important;
+}

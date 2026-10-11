@@ -1,0 +1,20 @@
+{% extends "pests/base.html" %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Surveillance Sessions</h2>
+  <p><a class="submit-button" href="{% url 'session_add' %}">➕ Add New Session</a></p>
+
+  <ul>
+    {% for session in sessions %}
+      <li style="margin-bottom: 1rem;">
+        <strong>{{ session.date }}</strong> ({{ session.time_of_day }}, {{ session.plant_part.name }})<br>
+        <a href="{% url 'session_edit' session.pk %}">✏️ Edit</a> |
+        <a href="{% url 'session_delete' session.pk %}">🗑️ Delete</a>
+      </li>
+    {% empty %}
+      <li>No sessions recorded yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

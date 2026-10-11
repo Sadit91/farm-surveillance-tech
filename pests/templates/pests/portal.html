@@ -1,0 +1,81 @@
+{% extends 'pests/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- QUICK ACCESS -->
+<div class="quick-access">
+  <h3>Quick Access</h3>
+  <div class="quick-buttons">
+    <a href="{% url 'farm_list' %}">Manage Farms</a>
+    <a href="{% url 'session_list' %}">Manage Sessions</a>
+    <a href="{% url 'observation_list' %}">Manage Observations</a>
+    <a href="{% url 'add_item_choice' %}">Add Pest or Disease</a>
+    <a href="{% url 'delete_item_choice' %}">Delete Pest or Disease</a>
+    <a href="{% url 'export_all_data_csv' %}">Export All Data (CSV)</a>
+    <a href="{% url 'export_all_data_json' %}">Export All Data (JSON)</a>
+    <a href="{% url 'effort_calculator' %}">Effort Calculator</a>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="dashboard-right" style="margin-top: 2rem; display: flex; justify-content: center;">
+  <canvas id="plantTypeChart" width="300" height="300"></canvas>
+</div>
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = {{ plant_labels|safe }};
+  const data = {{ plant_counts|safe }};
+
+  const ctx = document.getElementById('plantTypeChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Sessions by Plant Part',
+        data: data,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)'
+        ],
+        borderColor: 'rgba(255, 255, 255, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+</script>
+
+<!-- CARD GRID -->
+<div class="card-grid">
+  <div class="dashboard-card">
+    <div class="card-icon">📦</div>
+    <h3>Total Farms</h3>
+    <p>{{ farm_count }}</p>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-icon">📋</div>
+    <h3>Total Sessions</h3>
+    <p>{{ session_count }}</p>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-icon">🔬</div>
+    <h3>Total Observations</h3>
+    <p>{{ observation_count }}</p>
+  </div>
+
+{% endblock %}

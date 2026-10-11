@@ -1,0 +1,17 @@
+{% extends "pests/base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 60px;">
+  <h1 style="font-size: 4rem; color: #facc15;">404</h1>
+  <h2 style="color: #fff;">Oops! Page not found.</h2>
+  <p style="color: #ccc;">The page you are looking for doesn't exist or has been moved.</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100px; margin-top: 30px;">
+    <a href="{% url 'home' %}" class="btn"
+       style="padding: 10px 20px; background: #facc15; color: #000; border-radius: 6px; text-align: center;">
+      Go to Homepage
+    </a>
+  </div>
+</div>
+{% endblock %}

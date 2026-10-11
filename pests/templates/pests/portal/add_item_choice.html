@@ -1,0 +1,10 @@
+{% extends 'pests/base.html' %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Add Pest or Disease</h2>
+  <div class="quick-buttons" style="margin-top: 1.5rem;">
+    <a href="{% url 'pest_add' %}" class="quick-btn-special">Add Pest</a>
+    <a href="{% url 'disease_add' %}" class="quick-btn-special">Add Disease</a>
+  </div>
+</div>
+{% endblock %}

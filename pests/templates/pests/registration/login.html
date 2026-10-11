@@ -1,0 +1,20 @@
+{% extends "pests/base.html" %}
+{% block content %}
+<div class="form-container">
+  <h2 class="form-title">Login</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% for error in field.errors %}
+          <div class="form-error">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn-submit">Login</button>
+  </form>
+  <p class="form-note">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+{% endblock %}
