@@ -7,8 +7,8 @@ effort, and export their data.
 
 Built for **HIT391** by:
 
-| Name | Student ID |
-|---|---|
+| Name |
+|---|
 | Sadit Khan |
 | Nguyen Hao Vo |
 | Fabiha Sultana Anushe |
