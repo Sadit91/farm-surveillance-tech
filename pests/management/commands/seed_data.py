@@ -6,7 +6,7 @@ Usage:
     python manage.py seed_data              # reference data + demo account
     python manage.py seed_data --no-demo    # reference data only
 
-Demo login:  demo / mangomedic123
+Demo login:  demo / cropmedic123
 """
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -152,7 +152,7 @@ DISEASES = [
 # ---------------------------------------------------------------- demo data
 
 DEMO_USERNAME = "demo"
-DEMO_PASSWORD = "mangomedic123"
+DEMO_PASSWORD = "cropmedic123"
 DEMO_EMAIL = "demo@example.com"
 
 DEMO_FARMS = [
